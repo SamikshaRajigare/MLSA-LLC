@@ -134,7 +134,7 @@ input, select, button {
 </div>
 
 <script>
-// Load from localStorage
+
 let myLibrary = JSON.parse(localStorage.getItem('myBooks')) || [];
 
 const bookForm = document.getElementById('book-form');
@@ -142,7 +142,6 @@ const bookGrid = document.getElementById('book-grid');
 const searchInput = document.getElementById('search');
 const filterGenre = document.getElementById('filter-genre');
 
-// Add Book
 bookForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -159,7 +158,7 @@ bookForm.addEventListener('submit', function(e) {
     bookForm.reset();
 });
 
-// Delete Book
+
 function deleteBook(id) {
     if (confirm("Are you sure you want to delete this book?")) {
         myLibrary = myLibrary.filter(book => book.id !== id);
@@ -167,7 +166,6 @@ function deleteBook(id) {
     }
 }
 
-// Toggle Read
 function toggleRead(id) {
     myLibrary = myLibrary.map(book => {
         if (book.id === id) {
@@ -178,7 +176,6 @@ function toggleRead(id) {
     saveAndRender();
 }
 
-// Filter Books
 function filterBooks() {
     const query = searchInput.value.toLowerCase();
     const selectedGenre = filterGenre.value;
@@ -197,7 +194,7 @@ function filterBooks() {
     render(filtered);
 }
 
-// Render
+
 function render(books) {
     bookGrid.innerHTML = '';
 
@@ -229,17 +226,16 @@ function render(books) {
     });
 }
 
-// Save + Render
+
 function saveAndRender() {
     localStorage.setItem('myBooks', JSON.stringify(myLibrary));
     filterBooks();
 }
 
-// Events
+
 searchInput.addEventListener('input', filterBooks);
 filterGenre.addEventListener('change', filterBooks);
 
-// Initial load
 filterBooks();
 </script>
 
